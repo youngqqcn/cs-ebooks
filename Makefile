@@ -1,2 +1,2 @@
 all:
-	python3 listbooks.py > readme.py
+	python3 listbooks.py > readme.md

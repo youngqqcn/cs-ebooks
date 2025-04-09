@@ -1,0 +1,35 @@
+name: Auto Update README
+
+on:
+  push:
+    branches:
+      - main  # 监听 main 分支推送
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'  # 根据需要修改 Python 版本
+
+    - name: Install dependencies (if any)
+      run: |
+        pip install -r requirements.txt || true
+
+    - name: Run script and update README
+      run: |
+        python run.py > README.md
+
+    - name: Commit and push changes
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git add README.md
+        git commit -m "auto: update README.md from run.py" || echo "No changes to commit"
+        git push
