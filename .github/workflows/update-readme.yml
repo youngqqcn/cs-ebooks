@@ -20,7 +20,7 @@ jobs:
 
     - name: Run script and update README
       run: |
-        python run.py > README.md
+        python listbooks.py > README.md
 
     - name: Commit and push changes
       run: |
