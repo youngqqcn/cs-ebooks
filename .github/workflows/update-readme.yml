@@ -3,7 +3,7 @@ name: Auto Update README
 on:
   push:
     branches:
-      - main  # 监听 main 分支推送
+      - master  # 监听 main 分支推送
 
 jobs:
   update-readme:
@@ -17,10 +17,6 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.12'  # 根据需要修改 Python 版本
-
-    - name: Install dependencies (if any)
-      run: |
-        pip install -r requirements.txt || true
 
     - name: Run script and update README
       run: |
